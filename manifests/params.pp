@@ -1,20 +1,6 @@
 # Add something intelligent
 class users::params(
 
-  # secrets (eYAML)
-  Optional[
-    Hash[
-      String,
-      Struct[{
-        ssh => Optional[
-        Struct[{
-          private_key => String
-        }]
-        ]
-      }]
-    ]
-  ] $secrets,
-
   Optional[
     Hash[
       String,
@@ -38,13 +24,6 @@ class users::params(
       }]
       ]
   ] $accounts,
-
-  Optional[
-    Hash[
-      String,
-      String
-    ]
-  ] $extra_dependencies,
 
   $mandatory_dependencies = {
     libshadow => 'gem',

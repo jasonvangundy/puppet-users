@@ -41,7 +41,7 @@ define users::manage
       true   => [],
     },
     home     => "/home/${name}",
-    require  => Package[[keys($::users::mandatory_dependencies)], [keys($::users::extra_dependencies)]],
+    require  => Package[[keys($::users::mandatory_dependencies)]],
   }
 
   if $userdata['present'] and $userdata['managehome'] {
@@ -61,7 +61,6 @@ define users::manage
       
       # Manage SSH keys
       $ssh_public_key = try_get_value($userdata, "ssh/key")
-      $ssh_private_key = try_get_value($::users::secrets, "${name}/ssh/private_key")
       
       if !empty($ssh_public_key) {
         File{ "${name}_ssh_public_key":
@@ -70,16 +69,6 @@ define users::manage
           mode    => '0655',
           owner   => $name,
           path    => "/home/${name}/.ssh/${name}.pub",
-        }
-      }
-
-      if !empty($ssh_private_key) {
-        File{ "${name}_ssh_private_key":
-          content => $ssh_private_key,
-          group   => $name,
-          mode    => '0600',
-          owner   => $name,
-          path    => "/home/${name}/.ssh/${name}"
         }
       }
 

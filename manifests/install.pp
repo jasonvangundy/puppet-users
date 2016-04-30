@@ -6,15 +6,8 @@ class users::install {
     true  => {},
   }
 
-  $extra_dependencies = empty($::users::extra_dependencies) ? {
-    false => $::users::extra_dependencies,
-    true  => {},
-  }
-
-  $dependencies = merge($mandatory_dependencies, $extra_dependencies)
-
-  if !empty($dependencies) {
-    $dependencies.each |$dependency,$provider| {
+  if !empty($mandatory_dependencies) {
+    $mandatory_dependencies.each |$dependency,$provider| {
       if !defined(Package[$dependency]) {
         Package { $dependency:
           ensure   => installed,
