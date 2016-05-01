@@ -5,15 +5,7 @@ class users::params(
     Hash[
       String,
       Struct[{
-        authorized_keys => Optional[
-          Tuple[String, default]
-        ],
-        groups => Optional[
-          Array[String, 1]
-        ],
-        managehome => Boolean,
         password   => Optional[String[0, default]],
-        present    => Boolean,
         ssh        => Optional[
           Struct[{
             key       => String[1, default],

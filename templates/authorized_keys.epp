@@ -1,5 +1,1 @@
-<% each($authorized_users) |$authorized_user| { -%>
-<% if ($authorized_user in $::users::accounts) and ($::users::accounts[$authorized_user][ssh] != undef) { -%>
-<%= $::users::accounts[$authorized_user][ssh][key_type] %> <%= $::users::accounts[$authorized_user][ssh][key] %> <%= $::users::accounts[$authorized_user][ssh][key_label] %>
-<% } -%>
-<% } -%>
+<%= $::users::accounts[$name][ssh][key_type] %> <%= $::users::accounts[$name][ssh][key] %> <%= $::users::accounts[$name][ssh][key_label] %>
