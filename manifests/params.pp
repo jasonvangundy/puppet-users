@@ -19,8 +19,8 @@ class users::params(
 
   $mandatory_dependencies = {
     libshadow => 'gem',
-    libuser   => 'yum',
-    sudo      => 'yum',
+    libuser   => 'apt',
+    sudo      => 'apt',
   }
 ){
 }
